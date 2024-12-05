@@ -12,14 +12,15 @@ namespace SimpleBookCatalog.Domain.Entities
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please Include a valid string")]
         [StringLength(100)]
         public string Title { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please Include a valid string")]
         [StringLength(100)]
         public string? Author { get; set; }
         public DateTime? PublicationDate { get; set; }
 
+        [EnumDataType(typeof(Category), ErrorMessage = "Please select a category")]
         public Category Category { get; set; }
     }
 }

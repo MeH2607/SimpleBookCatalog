@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using SimpleBookCatalog.Application.Interfaces;
 using SimpleBookCatalog.Components;
 using SimpleBookCatalog.Infrastructure.Context;
+using SimpleBookCatalog.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddDbContextFactory < SimpleBookCatalogDbContext> (options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SimpleBookCatalogConnection"));
 });
+
+//Aktiver Book Repository Service
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
